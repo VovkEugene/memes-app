@@ -6,12 +6,25 @@ const PREVIEW_MOCK = {
 
 class Model {
   constructor() {
+    this.memes = [];
+    this.currentMemeId = null;
     this.preview = PREVIEW_MOCK;
-    // this.preview = {
-    //   url: "",
-    //   textTop: "",
-    //   textBottom: "",
-    // };
+  }
+
+  getMemes() {
+    return this.memes;
+  }
+
+  setMemes(memes) {
+    this.memes = memes;
+  }
+
+  getCurrentMemeId() {
+    return this.currentMemeId;
+  }
+
+  setCurrentMemeId(currentMemeId) {
+    this.currentMemeId = currentMemeId;
   }
 
   getPreview() {

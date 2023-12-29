@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,12 +12,16 @@
     <title>Memes App</title>
   </head>
   <body>
+    <section class="settings">
+      <label for="memes" class="settings__memes">Мем</label>
+      <select name="memes" id="memes" class="js-memes-select"></select>
+    </section>
 
-    <div class="preview js-preview">
+    <section class="preview js-preview">
       <p class="js-top-text"></p>
       <p class="js-bottom-text"></p>
       <img class="js-image">
-    </div>
+    </section>
 
     <script src="./js/model.js"></script>
     <script src="./js/view.js"></script>
