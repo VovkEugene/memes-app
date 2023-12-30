@@ -1,16 +1,25 @@
 class View {
-  constructor({ onMemeChange }) {
+  constructor({ onMemeChange, onTextTopChange, onTextBottomChange }) {
     this.previewTopTextNode = document.querySelector(".js-top-text");
     this.previewBottomTextNode = document.querySelector(".js-bottom-text");
     this.previewImageNode = document.querySelector(".js-image");
 
     this.settingsSelectNode = document.querySelector(".js-memes-select");
+    this.textTopInputNode = document.querySelector(".js-text-top-input");
+    this.textBottomInputNode = document.querySelector(".js-text-bottom-input");
 
     this.onMemeChange = onMemeChange;
+    this.onTextTopChange = onTextTopChange;
+    this.onTextBottomChange = onTextBottomChange;
 
     this.settingsSelectNode.addEventListener(
       "change",
       this._handleSelectChange
+    );
+    this.textTopInputNode.addEventListener("input", this._handleTextTopChange);
+    this.textBottomInputNode.addEventListener(
+      "input",
+      this._handleTextBottomChange
     );
   }
 
@@ -34,7 +43,7 @@ class View {
         optionNode.setAttribute("selected", true);
       }
 
-      this.settingsSelectNode.prepend(optionNode);
+      this.settingsSelectNode.appendChild(optionNode);
     });
   }
 
@@ -42,5 +51,13 @@ class View {
     const id = this.settingsSelectNode.value;
 
     this.onMemeChange(id);
+  };
+
+  _handleTextTopChange = (event) => {
+    this.onTextTopChange(event.target.value);
+  };
+
+  _handleTextBottomChange = (event) => {
+    this.onTextBottomChange(event.target.value);
   };
 }

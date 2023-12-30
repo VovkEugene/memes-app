@@ -1,15 +1,19 @@
-const PREVIEW_MOCK = {
-  textTop: "We are not the same",
-  textBottom: "We are different",
-};
-
 class Model {
-  constructor({ onCurrentMemeIdChange, onMemesChange }) {
+  constructor({
+    onCurrentMemeIdChange,
+    onMemesChange,
+    onTextTopChange,
+    onTextBottomChange,
+  }) {
     this.memes = [];
     this.currentMemeId = null;
-    this.preview = PREVIEW_MOCK;
+    this.textTop = "";
+    this.textBottom = "";
 
+    this.onMemesChange = onMemesChange;
     this.onCurrentMemeIdChange = onCurrentMemeIdChange;
+    this.onTextTopChange = onTextTopChange;
+    this.onTextBottomChange = onTextBottomChange;
   }
 
   getMemes() {
@@ -18,20 +22,41 @@ class Model {
 
   setMemes(memes) {
     this.memes = memes;
+    this.currentMemeId = memes[0].id;
+
+    this.onMemesChange();
+    this.onCurrentMemeIdChange();
+  }
+
+  setCurrentMemeId(currentMemeId) {
+    this.currentMemeId = currentMemeId;
+
+    this.onCurrentMemeIdChange();
   }
 
   getCurrentMemeId() {
     return this.currentMemeId;
   }
 
-  setCurrentMemeId(currentMemeId) {
-    this.currentMemeId = currentMemeId;
-    this.onCurrentMemeIdChange();
+  setTextTop(text) {
+    this.textTop = text;
+
+    this.onTextTopChange();
   }
 
-  getPreview() {
-    return this.preview;
+  setTextBottom(text) {
+    this.textBottom = text;
+
+    this.onTextBottomChange();
   }
+
+  getPreview = () => {
+    return {
+      textTop: this.textTop,
+      textBottom: this.textBottom,
+      url: this.getCurrentMeme().url,
+    };
+  };
 
   getCurrentMeme() {
     let currentMeme = null;

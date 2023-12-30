@@ -12,16 +12,22 @@
     <title>Memes App</title>
   </head>
   <body>
-    <section class="settings">
-      <label for="memes" class="settings__memes">Мем</label>
-      <select name="memes" id="memes" class="js-memes-select"></select>
-    </section>
+    <div class="setting">
+      <p>Мем</p>
+      <select class="js-memes-select"></select>
 
-    <section class="preview js-preview">
+      <p>Подпись сверху</p>
+      <input type="text" class="js-text-top-input" />
+
+      <p>Подпись снизу</p>
+      <input type="text" class="js-text-bottom-input" />
+    </div>
+
+    <div class="preview">
       <p class="js-top-text"></p>
       <p class="js-bottom-text"></p>
-      <img class="js-image">
-    </section>
+      <img class="js-image" />
+    </div>
 
     <script src="./js/model.js"></script>
     <script src="./js/view.js"></script>
